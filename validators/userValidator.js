@@ -13,9 +13,7 @@ const validator = async (params) => {
     if (error) {
         return {valid: false, errorMessage: error.details[0].message}
     }
-    console.log(params)
     const emailTaken = await User.findOne({email: params.email});
-    
     if (emailTaken) return {valid: false, errorMessage: 'Email is already taken'};
 
     return {valid: true}
